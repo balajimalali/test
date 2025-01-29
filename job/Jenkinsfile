@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+    environment {
+        IMAGE_NAME = "cronjob"
+        DOCKER_REGISTRY = "balajimalali"
+        WORKING_DIR = "job"
+        DOCKER_CREDS = credentials("docker-creds")
+    }
+    stages {
+        stage('Build') {
+            steps {
+                dir("${WORKING_DIR}") { 
+                    sh 'ls'
+                    sh 'cat just.txt'
+                }
+            }
+        }
+        stage('Push docker image') {
+            steps {
+                sh "ls"
+            }
+        }
+    }
+
+}
